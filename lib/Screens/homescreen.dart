@@ -7,24 +7,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> displayExOh = [
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-  ];
+  List<String> fixers = ['','','','','','','','',''];
 
-  bool ohTurn = true; // the first player is O!
+  bool turn = true; // the first player is O!
   var myTextStyle = TextStyle(color: Colors.white, fontSize: 30);
-  int ohScore = 0;
-  int exScore = 0;
+  int oScore = 0;
+  int xScore = 0;
   int drawScore = 0;
-  int filledBoxes = 0;
+  int counter = 0;
 
 
   @override
@@ -55,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                           SizedBox(
                             height: 20,
                           ),
-                          Text(ohScore.toString(), style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                          Text(oScore.toString(), style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
                         ],
                       ),
                     ),
@@ -81,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                           SizedBox(
                             height: 20,
                           ),
-                          Text(exScore.toString(), style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                          Text(xScore.toString(), style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
                         ],
                       ),
                     ),
@@ -105,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                         BoxDecoration(border: Border.all(color: Colors.grey)),
                         child: Center(
                           child: Text(
-                            displayExOh[index],
+                            fixers[index],
                             style: TextStyle(color: Colors.white, fontSize: 40),
                           ),
                         ),
@@ -175,15 +165,15 @@ class _HomePageState extends State<HomePage> {
   void _tapped(int index) {
 
     setState(() {
-      if (ohTurn && displayExOh[index] == '') {
-        displayExOh[index] = 'o';
-        filledBoxes += 1;
-      } else if (!ohTurn && displayExOh[index] == ''){
-        displayExOh[index] = 'x';
-        filledBoxes += 1;
+      if (turn && fixers[index] == '') {
+        fixers[index] = 'o';
+        counter += 1;
+      } else if (!turn && fixers[index] == ''){
+        fixers[index] = 'x';
+        counter += 1;
       }
 
-      ohTurn = !ohTurn;
+      turn = !turn;
       _checkWinner();
     });
   }
@@ -191,62 +181,62 @@ class _HomePageState extends State<HomePage> {
   void _checkWinner() {
 
     // checks 1st row
-    if (displayExOh[0] == displayExOh[1] &&
-        displayExOh[0] == displayExOh[2] &&
-        displayExOh[0] != '') {
-      _showWinDialog(displayExOh[0]);
+    if (fixers[0] == fixers[1] &&
+        fixers[0] == fixers[2] &&
+        fixers[0] != '') {
+      _showWinDialog(fixers[0]);
     }
 
     // checks 2nd row
-    if (displayExOh[3] == displayExOh[4] &&
-        displayExOh[3] == displayExOh[5] &&
-        displayExOh[3] != '') {
-      _showWinDialog(displayExOh[3]);
+    if (fixers[3] == fixers[4] &&
+        fixers[3] == fixers[5] &&
+        fixers[3] != '') {
+      _showWinDialog(fixers[3]);
     }
 
     // checks 3rd row
-    if (displayExOh[6] == displayExOh[7] &&
-        displayExOh[6] == displayExOh[8] &&
-        displayExOh[6] != '') {
-      _showWinDialog(displayExOh[6]);
+    if (fixers[6] == fixers[7] &&
+        fixers[6] == fixers[8] &&
+        fixers[6] != '') {
+      _showWinDialog(fixers[6]);
     }
 
     // checks 1st column
-    if (displayExOh[0] == displayExOh[3] &&
-        displayExOh[0] == displayExOh[6] &&
-        displayExOh[0] != '') {
-      _showWinDialog(displayExOh[0]);
+    if (fixers[0] == fixers[3] &&
+        fixers[0] == fixers[6] &&
+        fixers[0] != '') {
+      _showWinDialog(fixers[0]);
     }
 
     // checks 2nd column
-    if (displayExOh[1] == displayExOh[4] &&
-        displayExOh[1] == displayExOh[7] &&
-        displayExOh[1] != '') {
-      _showWinDialog(displayExOh[1]);
+    if (fixers[1] == fixers[4] &&
+        fixers[1] == fixers[7] &&
+        fixers[1] != '') {
+      _showWinDialog(fixers[1]);
     }
 
     // checks 3rd column
-    if (displayExOh[2] == displayExOh[5] &&
-        displayExOh[2] == displayExOh[8] &&
-        displayExOh[2] != '') {
-      _showWinDialog(displayExOh[2]);
+    if (fixers[2] == fixers[5] &&
+        fixers[2] == fixers[8] &&
+        fixers[2] != '') {
+      _showWinDialog(fixers[2]);
     }
 
     // checks diagonal
-    if (displayExOh[6] == displayExOh[4] &&
-        displayExOh[6] == displayExOh[2] &&
-        displayExOh[6] != '') {
-      _showWinDialog(displayExOh[6]);
+    if (fixers[6] == fixers[4] &&
+        fixers[6] == fixers[2] &&
+        fixers[6] != '') {
+      _showWinDialog(fixers[6]);
     }
 
     // checks diagonal
-    if (displayExOh[0] == displayExOh[4] &&
-        displayExOh[0] == displayExOh[8] &&
-        displayExOh[0] != '') {
-      _showWinDialog(displayExOh[0]);
+    if (fixers[0] == fixers[4] &&
+        fixers[0] == fixers[8] &&
+        fixers[0] != '') {
+      _showWinDialog(fixers[0]);
     }
 
-    else if(filledBoxes == 9){
+    else if(counter == 9){
       _showDrawDialog();
     }
 
@@ -294,31 +284,31 @@ class _HomePageState extends State<HomePage> {
         });
 
     if(winner == 'o') {
-      ohScore += 1;
+      oScore += 1;
     } else if (winner == 'x') {
-      exScore += 1;
+      xScore += 1;
     }
   }
 
   void _clearBoard() {
     setState(() {
       for(int i=0; i<9; i++){
-        displayExOh[i] = '';
+        fixers[i] = '';
       }
     });
-    filledBoxes = 0;
+    counter = 0;
   }
   void _clearGame() {
     setState(() {
       for(int i=0; i<9; i++){
-        displayExOh[i] = '';
+        fixers[i] = '';
       }
     });
-    filledBoxes = 0;
-    ohScore = 0;
-    exScore = 0;
+    counter = 0;
+    oScore = 0;
+    xScore = 0;
     drawScore = 0;
-    ohTurn = true;
+    turn = true;
   }
 }
 
