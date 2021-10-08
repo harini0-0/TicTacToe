@@ -1,4 +1,4 @@
-# tictactoe
+# TicTacToe
 
 A simple mobile game by Flutter and Dart
 
