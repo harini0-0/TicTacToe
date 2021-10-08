@@ -23,92 +23,109 @@ class _HomePageState extends State<HomePage> {
   var myTextStyle = TextStyle(color: Colors.white, fontSize: 30);
   int ohScore = 0;
   int exScore = 0;
+  int drawScore = 0;
   int filledBoxes = 0;
-
-  // static var myNewFont = GoogleFonts.pressStart2P(
-  //     textStyle: TextStyle(color: Colors.black, letterSpacing: 3));
-  // static var myNewFontWhite = GoogleFonts.pressStart2P(
-  //     textStyle: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15));
 
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xff002045),
-      body: Column(
-        children: <Widget>[
-          SizedBox(height: 15,),
-          Expanded(
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text('Player O', style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(ohScore.toString(), style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text('Player X', style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(exScore.toString(), style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
-                      ],
-                    ),
-                  ),
-                ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color(0xff002045),
+        body: Column(
+          children: <Widget>[
+            SizedBox(height: 35,),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                child: Text('TIC TAC TOE', style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
               ),
             ),
-          ),
-          Expanded(
-            flex: 3,
-            child: GridView.builder(
-                itemCount: 9,
-                gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      _tapped(index);
-                    },
-                    child: Container(
-                      decoration:
-                      BoxDecoration(border: Border.all(color: Colors.grey)),
-                      child: Center(
-                        child: Text(
-                          displayExOh[index],
-                          style: TextStyle(color: Colors.white, fontSize: 40),
-                        ),
+            Expanded(
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Player O', style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(ohScore.toString(), style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                        ],
                       ),
                     ),
-                  );
-                }),
-          ),
-          Expanded(
-            child: Container(
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    Text('TIC TAC TOE', style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Draws', style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(drawScore.toString(), style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Player X', style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(exScore.toString(), style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-          ),
-        ],
+            Expanded(
+              flex: 3,
+              child: GridView.builder(
+                  itemCount: 9,
+                  gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        _tapped(index);
+                      },
+                      child: Container(
+                        decoration:
+                        BoxDecoration(border: Border.all(color: Colors.grey)),
+                        child: Center(
+                          child: Text(
+                            displayExOh[index],
+                            style: TextStyle(color: Colors.white, fontSize: 40),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+            Expanded(child: GestureDetector(
+              onTap: (){},
+              child: Container(
+                child: Row(
+                  children: <Widget>[
+                    Text("Reset"),
+                    Icon(Icons.restart_alt),
+                  ],
+                ),
+              ),
+            ))
+          ],
+        ),
       ),
     );
   }
@@ -211,7 +228,8 @@ class _HomePageState extends State<HomePage> {
             ],
           );
         });
-
+    drawScore+=1;
+    print(drawScore);
   }
 
   void _showWinDialog(String winner) {
@@ -241,15 +259,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _clearBoard() {
-
     setState(() {
       for(int i=0; i<9; i++){
         displayExOh[i] = '';
       }
     });
-
     filledBoxes = 0;
-
   }
 
 }
