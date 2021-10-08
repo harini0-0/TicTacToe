@@ -113,16 +113,58 @@ class _HomePageState extends State<HomePage> {
                     );
                   }),
             ),
-            Expanded(child: GestureDetector(
-              onTap: (){},
-              child: Container(
-                child: Row(
-                  children: <Widget>[
-                    Text("Reset"),
-                    Icon(Icons.restart_alt),
-                  ],
+            Expanded(child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    _clearBoard();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.white,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text("Reset Board", style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                        SizedBox(width: 10,),
+                        Icon(Icons.restart_alt, size: 20, color: Colors.white,),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                SizedBox(width: 15,),
+                GestureDetector(
+                  onTap: (){
+                    _clearGame();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.white,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text("Restart Game", style: TextStyle(color: Colors.white, letterSpacing: 3, fontSize: 15),),
+                        SizedBox(width: 10,),
+                        Icon(Icons.gamepad_outlined, size: 20, color: Colors.white,),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ))
           ],
         ),
@@ -266,7 +308,18 @@ class _HomePageState extends State<HomePage> {
     });
     filledBoxes = 0;
   }
-
+  void _clearGame() {
+    setState(() {
+      for(int i=0; i<9; i++){
+        displayExOh[i] = '';
+      }
+    });
+    filledBoxes = 0;
+    ohScore = 0;
+    exScore = 0;
+    drawScore = 0;
+    ohTurn = true;
+  }
 }
 
 
