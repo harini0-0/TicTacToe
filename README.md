@@ -4,6 +4,7 @@ A simple mobile game by Flutter and Dart
 
 ## Game Preview / Demo Video & WalkThrough
 
+# Screenshot <br>
 ![WhatsApp Image 2021-10-09 at 12 54 28 AM](https://user-images.githubusercontent.com/66105380/136616503-8cfe5753-d6f5-4534-863f-f255888859de.jpeg)
 
 
