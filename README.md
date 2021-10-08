@@ -2,15 +2,24 @@
 
 A simple mobile game by Flutter and Dart
 
-## Getting Started
+## Demo Video & Explanation
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+https://user-images.githubusercontent.com/66105380/136615816-349445d5-bdb1-4976-ac38-49dbd10d325f.mp4
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+<br>
+@00:17 - X wins (Score updated) <br>
+@00:24 - Draw (Score updated)<br>
+@00:39 - O wins (Score updated)<br>
+@00:44 -> Gameboard resets (Scoreboard not updated)<br>
+@00:52 - Game restart (Scoreboard set back to 0)<br>
+
+##Techonology Used
+
+Framework: Flutter <br>
+Programming Language: Dart <br>
+
+## Operating System
+Windows 10, Android Studio
